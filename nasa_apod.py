@@ -6,7 +6,6 @@ import json
 
 from my_module import split
 from dotenv import load_dotenv
-load_dotenv('.env')
 
 
 def save_nasa_apod(dir_name):
@@ -29,6 +28,7 @@ def save_nasa_apod(dir_name):
 
 
 def main():
+    load_dotenv('.env')
     parser = argparse.ArgumentParser(
         description='скачивание картинок дня от NASA'
     )
