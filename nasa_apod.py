@@ -8,11 +8,11 @@ from my_module import split
 from dotenv import load_dotenv
 
 
-def save_nasa_apod(dir_name):
+def save_nasa_apod(dir_name, api_key):
     url = 'https://api.nasa.gov/planetary/apod'
     parameters = {
         'count': '10',
-        'api_key': os.environ['API_KEY_NASA']
+        'api_key': api_key
         }
     response = requests.get(url, params=parameters)
     response.raise_for_status
@@ -35,6 +35,7 @@ def main():
     parser.add_argument('dir_name', help='введите путь к директории')
     args = parser.parse_args()
     dir_name = args.dir_name
+    api_key = os.environ['API_KEY_NASA']
     return(save_nasa_apod(dir_name))
 
 
