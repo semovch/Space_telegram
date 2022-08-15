@@ -3,7 +3,6 @@ import os
 import datetime
 
 import requests
-import json
 
 from dotenv import load_dotenv
 
@@ -11,8 +10,7 @@ from dotenv import load_dotenv
 def save_nasa_epic(dir_path, api_key):
     url = f"https://api.nasa.gov/EPIC/api/natural/images?api_key={api_key}"
     response = requests.get(url)
-    response_json = json.loads(response.text)
-    for number_epic, epic in enumerate(response_json[:5]):
+    for number_epic, epic in enumerate(response.json()[:5]):
         os.makedirs(dir_path, exist_ok=True)
         filename = f'epic{number_epic}.png'
         date_epic = datetime.date.fromisoformat(epic['date'][:10]).strftime("%Y/%m/%d")
