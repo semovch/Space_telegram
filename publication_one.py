@@ -22,7 +22,7 @@ def main():
         description='публикация картинки'
     )
     parser.add_argument('directory', help='введите путь к нужной директории')
-    parser.add_argument('--image', help='введите название картинки')
+    parser.add_argument('image', help='введите название картинки', default = None)
     args = parser.parse_args()
     directory = args.directory
     image = args.image
