@@ -5,7 +5,6 @@ import argparse
 
 import telegram
 from dotenv import load_dotenv
-load_dotenv('.env')
 
 
 def publication(directory):
@@ -19,6 +18,7 @@ def publication(directory):
 
 
 def main():
+    load_dotenv('.env')
     parser = argparse.ArgumentParser(
         description='публикация картинок'
     )
