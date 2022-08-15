@@ -6,7 +6,6 @@ import requests
 import json
 
 from dotenv import load_dotenv
-load_dotenv('.env')
 
 
 def save_nasa_epic(dir_name):
@@ -26,6 +25,7 @@ def save_nasa_epic(dir_name):
             
 
 def main():
+    load_dotenv('.env')
     parser = argparse.ArgumentParser(
         description='скачивание картинок EPIC от NASA'
     )
