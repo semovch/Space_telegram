@@ -2,9 +2,6 @@ import argparse
 import os
 
 import requests
-import json
-
-from my_module import split
 
 
 def fetch_spacex_last_launch(ID, dir_name):
@@ -13,7 +10,7 @@ def fetch_spacex_last_launch(ID, dir_name):
     response_launch.raise_for_status()
     images = json.loads(response_launch.text)['links']['flickr']['original']
     for image_numb, image in enumerate(images):
-        image_ext = split(image)
+        image_ext = os.path.splitext(image)[1]
         os.makedirs(dir_name, exist_ok=True)
         filename = f'spacex{image_numb}{image_ext}'
         response_image = requests.get(image)
