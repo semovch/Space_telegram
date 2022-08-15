@@ -5,7 +5,6 @@ import requests
 
 
 def fetch_spacex_last_launch(ID, dir_name):
-
     response_launch = requests.get(f"https://api.spacexdata.com/v5/launches/{ID}")
     response_launch.raise_for_status()
     images = json.loads(response_launch.text)['links']['flickr']['original']
