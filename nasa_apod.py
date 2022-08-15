@@ -36,7 +36,7 @@ def main():
     args = parser.parse_args()
     dir_path = args.dir_path
     api_key = os.environ['API_KEY_NASA']
-    return(save_nasa_apod(dir_path))
+    return(save_nasa_apod(dir_path, api_key))
 
 
 if __name__ == '__main__':
