@@ -14,7 +14,7 @@ def publication(directory):
         random.shuffle(images)
         for image in images:
             bot = telegram.Bot(token=os.environ['TG_BOT_TOKEN'])
-            bot.send_photo(chat_id='@testchanelSemOvch', photo=open(os.path.join(directory, image), 'rb'))
+            bot.send_photo(chat_id=os.environ['TG_CHANNEL_ID'], photo=open(os.path.join(directory, image), 'rb'))
             time.sleep(int(os.environ['SLEEP_TIME']))
 
 
