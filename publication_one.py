@@ -4,21 +4,20 @@ import argparse
 
 import telegram
 from dotenv import load_dotenv
-load_dotenv('.env')
 
 
 def publication_one(directory, image):
-    if image is None:
+    if image:
+        bot = telegram.Bot(token=os.environ['TG_BOT_TOKEN'])
+        bot.send_photo(chat_id=os.environ['TG_CHANNEL_ID'], photo=open(os.path.join(directory, image), 'rb'))
+    else:
         images = os.listdir(directory)
         random.shuffle(images)
         bot = telegram.Bot(token=os.environ['TG_BOT_TOKEN'])
-        bot.send_photo(chat_id='@testchanelSemOvch', photo=open(os.path.join(directory, images[1]), 'rb'))
-    else:
-        bot = telegram.Bot(token=os.environ['TG_BOT_TOKEN'])
-        bot.send_photo(chat_id='@testchanelSemOvch', photo=open(os.path.join(directory, image), 'rb'))
-    
+        bot.send_photo(chat_id=os.environ['TG_CHANNEL_ID'], photo=open(os.path.join(directory, images[1]), 'rb'))
     
 def main():
+    load_dotenv('.env')
     parser = argparse.ArgumentParser(
         description='публикация картинки'
     )
