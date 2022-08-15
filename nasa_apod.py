@@ -2,7 +2,6 @@ import argparse
 import os
 
 import requests
-import json
 
 from my_module import split
 from dotenv import load_dotenv
@@ -16,7 +15,7 @@ def save_nasa_apod(dir_path, api_key):
         }
     response = requests.get(url, params=parameters)
     response.raise_for_status
-    apods = json.loads(response.text)
+    apods = response.json()
     for number_apod, apod in enumerate(apods):
         apod_ext = split(apod["url"])
         os.makedirs(dir_path, exist_ok=True)
