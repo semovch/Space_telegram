@@ -10,15 +10,15 @@ from dotenv import load_dotenv
 def save_nasa_epic(dir_path, api_key):
     url = f"https://api.nasa.gov/EPIC/api/natural/images?api_key={api_key}"
     response = requests.get(url)
-    for number_epic, epic in enumerate(response.json()[:5]):
+    for epic_number, epic in enumerate(response.json()[:5]):
         os.makedirs(dir_path, exist_ok=True)
-        filename = f'epic{number_epic}.png'
-        date_epic = datetime.date.fromisoformat(epic['date'][:10]).strftime("%Y/%m/%d")
-        image_epic = epic["image"]
-        response_epic = requests.get(f"https://api.nasa.gov/EPIC/archive/natural/{date_epic}/png/{image_epic}.png?api_key={api_key}")
-        response_epic.raise_for_status()
+        filename = f'epic{epic_number}.png'
+        epic_date = datetime.date.fromisoformat(epic['date'][:10]).strftime("%Y/%m/%d")
+        epic_image = epic["image"]
+        epic_response = requests.get(f"https://api.nasa.gov/EPIC/archive/natural/{epic_date}/png/{epic_image}.png?api_key={api_key}")
+        epic_response.raise_for_status()
         with open(os.path.join(dir_path, filename), 'wb') as file:
-            file.write(response_epic.content)
+            file.write(epic_response.content)
             
 
 def main():
