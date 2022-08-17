@@ -7,14 +7,14 @@ import telegram
 from dotenv import load_dotenv
 
 
-def publication(directory):
+def publication(directory, tg_bot_token, tg_channel_id, sleep_time):
     while True:
         images = os.listdir(directory)
         random.shuffle(images)
         for image in images:
-            bot = telegram.Bot(token=os.environ['TG_BOT_TOKEN'])
-            bot.send_photo(chat_id=os.environ['TG_CHANNEL_ID'], photo=open(os.path.join(directory, image), 'rb'))
-            time.sleep(int(os.environ['SLEEP_TIME']))
+            bot = telegram.Bot(token = tg_bot_token)
+            bot.send_photo(chat_id=tg_channel_id, photo=open(os.path.join(directory, image), 'rb'))
+            time.sleep(int(sleep_time))
 
 
 def main():
@@ -25,7 +25,10 @@ def main():
     parser.add_argument('directory', help='введите путь к нужной директории')
     args = parser.parse_args()
     directory = args.directory
-    return(publication(directory))
+    tg_bot_token = os.environ['TG_BOT_TOKEN']
+    tg_channel_id = os.environ['TG_CHANNEL_ID']
+    sleep_time = os.environ['SLEEP_TIME']
+    return(publication(directory, tg_bot_token, tg_channel_id, sleep_time))
     
     
 if __name__ == '__main__':
