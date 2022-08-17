@@ -6,7 +6,7 @@ import telegram
 from dotenv import load_dotenv
 
 
-def publication_one(directory, image, tg_bot_token, tg_channel_id)
+def publication_one(directory, image, tg_bot_token, tg_channel_id):
     if image:
         bot = telegram.Bot(token=tg_bot_token)
         bot.send_photo(chat_id=tg_channel_id, photo=open(os.path.join(directory, image), 'rb'))
