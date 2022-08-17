@@ -7,14 +7,13 @@ from dotenv import load_dotenv
 
 
 def publication_one(directory, image, tg_bot_token, tg_channel_id):
-    if image:
-        bot = telegram.Bot(token=tg_bot_token)
-        bot.send_photo(chat_id=tg_channel_id, photo=open(os.path.join(directory, image), 'rb'))
-    else:
+    if not image:
         images = os.listdir(directory)
         random.shuffle(images)
-        bot = telegram.Bot(token=tg_bot_token)
-        bot.send_photo(chat_id=tg_channel_id, photo=open(os.path.join(directory, images[1]), 'rb'))
+        image = images[0]
+    bot = telegram.Bot(token=tg_bot_token)
+    with open(os.path.join(directory, image), 'rb') as photo_space:
+        bot.send_photo(chat_id=tg_channel_id, photo=photo_space)
     
 
 def main():
