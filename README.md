@@ -31,7 +31,7 @@ python nasa_apod.py ваша_диретория
 python nasa_epic.py ваша_директория
 python spacex_launch.py ваша_директория id_запуска(необязательный аргумент)
 python pyblication_all_func.py ваша_директория 
-python publication_one.py ваша_директория название_картинки(необязательный аргумент)
+python publication_one.py ваша_директория --image название_картинки(необязательный аргумент)
 ```
 ### Цель проекта
 Код написан в образовательных целях на онлайн-курсе для веб-разработчиков [dvmn.org](https://dvmn.org/).
