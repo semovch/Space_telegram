@@ -6,16 +6,17 @@ import telegram
 from dotenv import load_dotenv
 
 
-def publication_one(directory, image):
+def publication_one(directory, image, tg_bot_token, tg_channel_id)
     if image:
-        bot = telegram.Bot(token=os.environ['TG_BOT_TOKEN'])
-        bot.send_photo(chat_id=os.environ['TG_CHANNEL_ID'], photo=open(os.path.join(directory, image), 'rb'))
+        bot = telegram.Bot(token=tg_bot_token)
+        bot.send_photo(chat_id=tg_channel_id, photo=open(os.path.join(directory, image), 'rb'))
     else:
         images = os.listdir(directory)
         random.shuffle(images)
-        bot = telegram.Bot(token=os.environ['TG_BOT_TOKEN'])
-        bot.send_photo(chat_id=os.environ['TG_CHANNEL_ID'], photo=open(os.path.join(directory, images[1]), 'rb'))
+        bot = telegram.Bot(token=tg_bot_token)
+        bot.send_photo(chat_id=tg_channel_id, photo=open(os.path.join(directory, images[1]), 'rb'))
     
+
 def main():
     load_dotenv('.env')
     parser = argparse.ArgumentParser(
@@ -26,7 +27,9 @@ def main():
     args = parser.parse_args()
     directory = args.directory
     image = args.image
-    return(publication_one(directory, image))
+    tg_bot_token = os.environ['TG_BOT_TOKEN']
+    tg_channel_id = os.environ['TG_CHANNEL_ID']
+    return(publication_one(directory, image, tg_bot_token, tg_channel_id))
     
     
 if __name__ == '__main__':
