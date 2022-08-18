@@ -29,9 +29,9 @@ pip install -r requirements.txt
 ```
 python nasa_apod.py ваша_диретория
 python nasa_epic.py ваша_директория
-python spacex_launch.py ваша_директория id_запуска(необязательный аргумент)
+python spacex_launch.py ваша_директория --launch_id id_запуска(необязательный аргумент, если не указаывается, то --launch_id добавлять не надо)
 python pyblication_all_func.py ваша_директория 
-python publication_one.py ваша_директория --image название_картинки(необязательный аргумент)
+python publication_one.py ваша_директория --image название_картинки(необязательный аргумент, если не указывается, то --image добавлять не надо)
 ```
 ### Цель проекта
 Код написан в образовательных целях на онлайн-курсе для веб-разработчиков [dvmn.org](https://dvmn.org/).
