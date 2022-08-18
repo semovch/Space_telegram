@@ -16,7 +16,7 @@ def save_nasa_apod(dir_path, api_key):
     response.raise_for_status
     apods = response.json()
     for apod_number, apod in enumerate(apods):
-        apod_ext = os.path.splitext(apod["url"])[1]
+        apod_ext = os.path.splitext(apod['url'])[1]
         os.makedirs(dir_path, exist_ok=True)
         filename = f'nasa{apod_number}{apod_ext}'
         apod_response = requests.get(apod['url'])
