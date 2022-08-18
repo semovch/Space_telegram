@@ -5,7 +5,7 @@ import requests
 
 
 def fetch_spacex_last_launch(dir_path, launch_id):
-    response_launch = requests.get(f"https://api.spacexdata.com/v5/launches/{launch_id}")
+    response_launch = requests.get(f'https://api.spacexdata.com/v5/launches/{launch_id}')
     response_launch.raise_for_status()
     images = response_launch.json()['links']['flickr']['original']
     for image_numb, image in enumerate(images):
@@ -23,7 +23,7 @@ def main():
         description='скачивание картинок'
     )
     parser.add_argument('dir_path', help='введите путь к директории')
-    parser.add_argument('--launch_id', help='введите ID запуска', default="latest")
+    parser.add_argument('--launch_id', help='введите ID запуска', default='latest')
     args = parser.parse_args()
     dir_path = args.dir_path
     launch_id = args.launch_id
