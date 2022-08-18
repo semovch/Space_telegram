@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 
 
 def save_nasa_epic(dir_path, api_key):
-    url = f"https://api.nasa.gov/EPIC/api/natural/images"
+    url = f'https://api.nasa.gov/EPIC/api/natural/images'
     parameters = {
         'api_key': api_key
         }
@@ -16,12 +16,12 @@ def save_nasa_epic(dir_path, api_key):
     for epic_number, epic in enumerate(response.json()[:5]):
         os.makedirs(dir_path, exist_ok=True)
         filename = f'epic{epic_number}.png'
-        epic_date = datetime.date.fromisoformat(epic['date'][:10]).strftime("%Y/%m/%d")
-        epic_image = epic["image"]
+        epic_date = datetime.date.fromisoformat(epic['date'][:10]).strftime('%Y/%m/%d')
+        epic_image = epic['image']
         epic_parameters = {
             'api_key': api_key
             }
-        epic_response = requests.get(f"https://api.nasa.gov/EPIC/archive/natural/{epic_date}/png/{epic_image}.png", params = epic_parameters)
+        epic_response = requests.get(f'https://api.nasa.gov/EPIC/archive/natural/{epic_date}/png/{epic_image}.png', params = epic_parameters)
         epic_response.raise_for_status()
         with open(os.path.join(dir_path, filename), 'wb') as file:
             file.write(epic_response.content)
